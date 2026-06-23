@@ -13,9 +13,8 @@ A full-stack IoT system for real-time water quality monitoring. An **ESP32** rea
 |---|
 |![Admin Panel](assets/images/Users.jpeg) |
 ---
-|---|
 |Hardware|
-
+|---|
 |![Hardware](assets/images/Hardware.jpeg) |
 
 ---
