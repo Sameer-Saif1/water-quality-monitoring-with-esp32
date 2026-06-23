@@ -1,0 +1,49 @@
+# =============================================================================
+# Secrets — NEVER commit these. Real values live only on your machine.
+# =============================================================================
+**/firebase_options.dart
+**/secrets.h
+**/google-services.json
+**/GoogleService-Info.plist
+*.env
+.env.*
+
+# =============================================================================
+# Flutter / Dart
+# =============================================================================
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/build/
+**/.pub-cache/
+**/.pub/
+*.iml
+*.lock.json
+flutter_app/water_quality_app/.flutter-plugins
+flutter_app/water_quality_app/.flutter-plugins-dependencies
+
+# Generated platform folders (recreate with `flutter create .`)
+flutter_app/water_quality_app/android/
+flutter_app/water_quality_app/ios/
+flutter_app/water_quality_app/macos/
+flutter_app/water_quality_app/windows/
+flutter_app/water_quality_app/linux/
+flutter_app/water_quality_app/web/
+
+# =============================================================================
+# Arduino / PlatformIO (firmware)
+# =============================================================================
+firmware/.pio/
+firmware/.vscode/
+*.bin
+*.elf
+
+# =============================================================================
+# IDE / OS
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

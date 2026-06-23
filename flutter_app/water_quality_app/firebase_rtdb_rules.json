@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "access": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && root.child('access').child(auth.uid).child('role').val() === 'admin'",
+        ".validate": "newData.hasChildren(['granted', 'role'])"
+      }
+    },
+    "devices": {
+      "$deviceId": {
+        ".read": "auth != null && root.child('access').child(auth.uid).child('granted').val() === true",
+        ".write": "auth != null && root.child('access').child(auth.uid).child('granted').val() === true",
+        "latest": {
+          ".validate": "newData.hasChildren(['pH', 'tds', 'ec', 'waterTemp', 'turbidity'])"
+        },
+        "history": {
+          "$pushId": {
+            ".validate": "newData.hasChildren(['pH', 'tds', 'ec', 'waterTemp', 'turbidity'])"
+          }
+        },
+        "thresholds": {
+          ".validate": "newData.hasChildren(['phMin', 'phMax', 'turbidityMax', 'tdsMax', 'tempMax'])"
+        }
+      }
+    }
+  }
+}

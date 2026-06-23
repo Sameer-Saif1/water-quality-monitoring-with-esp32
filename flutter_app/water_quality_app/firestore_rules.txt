@@ -1,0 +1,43 @@
+rules_version = '2';
+
+// =============================================================================
+// Firestore Security Rules — Water Quality Monitor
+//
+// Enforces:
+//  - No one can read/write ANY user profile unless they are signed in AND
+//    their own profile says role == "admin".
+//  - A signed-in user can read their OWN profile (so the app can show the
+//    "no access" screen), but cannot write to it at all.
+//  - There is no public/unauthenticated access anywhere.
+//
+// Paste this into Firebase Console > Firestore Database > Rules > Publish.
+// =============================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.status == 'active';
+    }
+
+    match /users/{userId} {
+      // Anyone signed in can read their OWN profile (needed to determine
+      // whether they're approved/active, or to show the no-access screen).
+      // Admins can read every profile (needed for the user management list).
+      allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+
+      // Only admins can create, update, or delete user profiles.
+      // Regular users can NEVER write to their own or anyone's profile —
+      // this is what makes the role/status fields tamper-proof from the
+      // client, and is the core of "no self-approval" enforcement.
+      allow write: if isAdmin();
+    }
+  }
+}
