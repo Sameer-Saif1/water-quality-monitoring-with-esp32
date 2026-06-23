@@ -3,7 +3,13 @@
 A full-stack IoT system for real-time water quality monitoring. An **ESP32** reads pH, TDS, turbidity, conductivity, and temperature sensors and streams live data to **Firebase Realtime Database**. A **Flutter mobile app** displays live readings, historical trend charts, configurable alerts, and a full **admin-managed access control system** — no public signup, every account is created by an administrator.
 
 ---
+## 📸 Screenshots
 
+| Live Dashboard | History Charts | Admin Panel |
+|---|---|---|
+| ![Dashboard](assets/images/dashboard.png) | ![History](assets/images/history.png) | ![Admin](assets/images/admin.png) |
+
+![Hardware](assets/images/hardware.jpg) ![Alerts Settings](assets/images/Alerts settings.jpg)
 ## ✨ Features
 
 | Feature | Description |
